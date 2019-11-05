@@ -12,7 +12,9 @@
     "audit",
     "log"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "mongoose": "^5.7.7"
+  },
   "devDependencies": {
     "autod": "^3.0.1",
     "autod-egg": "^1.1.0",
