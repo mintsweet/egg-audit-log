@@ -1,3 +1,5 @@
+'use strict';
+
 exports.auditLog = {
   model: {
     name: 'audit_log_custom',

@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * egg-audit-log default config
  * @member Config#auditLog

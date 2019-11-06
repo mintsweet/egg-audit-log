@@ -1,3 +1,5 @@
+'use strict';
+
 exports.auditLog = {
   mongoose: {
     url: process.env.MONGODB_URL,

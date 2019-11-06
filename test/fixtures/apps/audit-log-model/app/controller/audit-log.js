@@ -1,3 +1,5 @@
+'use strict';
+
 const { Controller } = require('egg');
 
 module.exports = class AuditLogController extends Controller {
