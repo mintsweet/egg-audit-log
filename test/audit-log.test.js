@@ -25,6 +25,7 @@ describe('test/audit-log.test.js', () => {
       assert(typeof app.auditLog.log === 'function');
       assert(typeof app.auditLog.find === 'function');
       assert(typeof app.auditLog.remove === 'function');
+      assert(typeof app.auditLog.count === 'function');
       assert(typeof app.auditLog.getModel === 'function');
     });
 
@@ -36,11 +37,12 @@ describe('test/audit-log.test.js', () => {
         .expect('OK')
         .expect(200);
 
-      const { body } = await app.httpRequest()
+      const { body: { total, data } } = await app.httpRequest()
         .get('/query')
         .expect(200);
 
-      assert(body[0].url === '/login');
+      assert(total === 1);
+      assert(data[0].url === '/login');
     });
 
     it('should load promise', () => {

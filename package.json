@@ -40,7 +40,8 @@
   "files": [
     "config",
     "app.js",
-    "lib"
+    "lib",
+    "index.d.ts"
   ],
   "ci": {
     "version": "8, 10"
