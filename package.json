@@ -35,7 +35,8 @@
     "lint": "eslint .",
     "ci": "egg-bin pkgfiles --check && npm run lint && npm run cov",
     "pkgfiles": "egg-bin pkgfiles",
-    "autod": "autod"
+    "autod": "autod",
+    "prepublishOnly": "MONGODB_URL=mongodb://localhost:27017/test npm test"
   },
   "files": [
     "config",
