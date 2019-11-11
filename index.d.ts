@@ -18,6 +18,12 @@ interface AuditLog {
   remove: (conditions: any) => any;
   count: (filter: any) => any;
   getModel: () => any;
+
+  middleware: (
+    operationType: string,
+    operationContent: string,
+    handle?: (ctx: Context) => any,
+  ) => void;
 }
 
 interface AuditLogConfig {

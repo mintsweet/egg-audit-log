@@ -45,6 +45,24 @@ describe('test/audit-log.test.js', () => {
       assert(data[0].url === '/login');
     });
 
+    it('should get data from middleware', async () => {
+      app.mockCsrf();
+
+      await app.httpRequest()
+        .get('/test')
+        .expect('OK')
+        .expect(200);
+
+      const { body: { total, data } } = await app.httpRequest()
+        .get('/query')
+        .expect(200);
+
+      assert(total === 1);
+      assert(data[0].url === '/test');
+      assert(data[0].operationType === 'log');
+      assert(data[0].operationContent === 'test content');
+    });
+
     it('should load promise', () => {
       const query = app.auditLog.find({});
       assert.equal(query.exec().constructor, Promise);
