@@ -6,8 +6,7 @@ interface AuditLog {
     ctx: Context,
     data?: {
       operationType?: String,
-      operationContent?: String,
-      customData?: any;
+      operationContent?: any,
     },
   ) => any;
   find: (

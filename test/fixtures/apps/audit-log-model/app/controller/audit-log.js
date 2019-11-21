@@ -6,8 +6,7 @@ module.exports = class AuditLogController extends Controller {
   async login(ctx) {
     this.app.auditLog.log(ctx, {
       operationType: 'login',
-      operationContent: '',
-      customData: {
+      operationContent: {
         user: 'admin',
       },
     });
