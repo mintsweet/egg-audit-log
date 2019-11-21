@@ -3,6 +3,9 @@ environment:
     - nodejs_version: '8'
     - nodejs_version: '10'
 
+services:
+  - mongodb
+
 install:
   - ps: Install-Product node $env:nodejs_version
   - npm i npminstall && node_modules\.bin\npminstall
@@ -10,6 +13,6 @@ install:
 test_script:
   - node --version
   - npm --version
-  - npm run test
+  - MONGODB_URL=mongodb://localhost:27017/test npm run test
 
 build: off
