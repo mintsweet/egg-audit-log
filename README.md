@@ -75,9 +75,6 @@ class Test extends Controller {
     await this.app.auditLog.log(ctx, {
       operationType: 'operationType',
       operationContent: 'operationContent',
-      customData: {
-        example: 'exampleText'
-      }
     });
     return ctx.success();
   }
@@ -90,6 +87,20 @@ class Test extends Controller {
       total,
     });
   }
+}
+```
+
+### Middleware Example
+
+```javascript
+export default app => {
+  const {
+    auditLog: {
+      middleware: log,
+    },
+  } = app;
+
+  app.get('/users', log('log type', 'log content'), 'user.query');
 }
 ```
 
