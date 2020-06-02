@@ -8,9 +8,9 @@
 exports.auditLog = {
   model: {
     name: 'audit_log',
-    expansion: {},
-    func: () => {},
+    expand: {},
   },
+  extra: () => {},
   mongoose: {
     url: '',
     options: {},

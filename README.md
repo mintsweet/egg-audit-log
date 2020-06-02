@@ -47,9 +47,9 @@ exports.auditLog = {
 exports.auditLog = {
   model: {
     name: 'audit_log',
-    expansion: {},
-    func: (ctx) => ({}),
+    expand: {},
   },
+  extra: () => {},
   mongoose: {
     url: '',
     options: {},
@@ -57,13 +57,13 @@ exports.auditLog = {
 };
 ```
 
-| Field           | Type     | Remark                                 |
-| --------------- | -------- | -------------------------------------- |
-| model           | Object   | Config model for audit-log             |
-| model.name      | String   | Name for audit-log model               |
-| model.expansion | Object   | Expansion for audit-log model          |
-| model.func      | Function | Return data to save in audit-log model |
-| mongoose        | Object   | Same as egg-audit-log                  |
+| Field        | Type     | Remark                                 |
+| ------------ | -------- | -------------------------------------- |
+| model        | Object   | Config model for audit-log             |
+| model.name   | String   | Name for audit-log model               |
+| model.expand | Object   | Expansion for audit-log model          |
+| extra        | Function | Return data to save in audit-log model |
+| mongoose     | Object   | Same as egg-audit-log                  |
 
 ### Example
 

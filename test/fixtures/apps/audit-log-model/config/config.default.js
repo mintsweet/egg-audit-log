@@ -3,16 +3,16 @@
 exports.auditLog = {
   model: {
     name: 'audit_log_custom',
-    expansion: {
+    expand: {
       user: String,
       env: String,
     },
-    func: ctx => {
-      return {
-        user: 'admin',
-        env: ctx.app.env,
-      };
-    },
+  },
+  extra: ctx => {
+    return {
+      user: 'admin',
+      env: ctx.app.config.env,
+    };
   },
   mongoose: {
     url: process.env.MONGODB_URL,

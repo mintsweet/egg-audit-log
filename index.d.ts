@@ -1,19 +1,16 @@
-import * as mongoose from 'mongoose';
+import { ConnectionOptions } from 'mongoose';
 import { Context } from 'egg';
 
 interface AuditLog {
   log: (
     ctx: Context,
     data?: {
-      operationType?: String,
-      operationContent?: any,
-    },
-  ) => any;
-  find: (
-    conditions: any,
-    projection?: any | null, 
-    options?: any | null,
-  ) => any;
+      operationType?: string;
+      operationContent?: any;
+    }
+  ) => Promise<any>;
+
+  find: (conditions: any, projection?: any | null, options?: any | null) => any;
   remove: (conditions: any) => any;
   count: (filter: any) => any;
   getModel: () => any;
@@ -21,21 +18,21 @@ interface AuditLog {
   middleware: (
     operationType: string,
     operationContent: string,
-    handle?: (ctx: Context) => any,
-  ) => void;
+    handle?: (ctx: Context) => any
+  ) => (ctx, next) => Promise<any>;
 }
 
 interface AuditLogConfig {
   model: {
-    name?: string,
-    expansion?: {
+    name?: string;
+    expand?: {
       [key: string]: any;
-    },
-    func?: (ctx: Context) => ({}),
+    };
   };
-  mongoose: {
-    url?: string,
-    options?: mongoose.ConnectionOptions,
+  additional?: (ctx: Context) => {};
+  mongoose?: {
+    url?: string;
+    options?: ConnectionOptions;
   };
 }
 
