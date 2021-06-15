@@ -1,7 +1,7 @@
 'use strict';
 
 const assert = require('assert');
-const AuditLog = require('./lib/AuditLog');
+const AuditLog = require('./lib/audit_log');
 const AuditLogMiddleware = require('./lib/middleware');
 
 module.exports = app => {

@@ -13,8 +13,8 @@ module.exports = class AuditLogController extends Controller {
   }
 
   async query(ctx) {
-    const logs = await this.app.auditLog.find();
-    const total = await this.app.auditLog.count();
+    const logs = await this.app.auditLog.model.find();
+    const total = await this.app.auditLog.model.countDocuments();
 
     ctx.body = {
       total,

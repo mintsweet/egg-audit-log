@@ -10,7 +10,6 @@ exports.auditLog = {
     name: 'audit_log',
     expand: {},
   },
-  extra: () => {},
   mongoose: {
     url: '',
     options: {},

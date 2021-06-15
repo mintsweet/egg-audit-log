@@ -4,18 +4,11 @@ exports.auditLog = {
   model: {
     name: 'audit_log_custom',
     expand: {
-      user: String,
-      env: String,
+      operator: String,
     },
   },
-  extra: ctx => {
-    return {
-      user: 'admin',
-      env: ctx.app.config.env,
-    };
-  },
   mongoose: {
-    url: process.env.MONGODB_URL,
+    url: process.env.MONGODB_URL || 'mongodb://localhost:27017/test',
     options: {
       useUnifiedTopology: true,
       useNewUrlParser: true,
@@ -24,4 +17,3 @@ exports.auditLog = {
 };
 
 exports.keys = 'audit-log-model';
-

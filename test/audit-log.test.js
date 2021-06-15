@@ -17,16 +17,13 @@ describe('test/audit-log.test.js', () => {
     after(() => app.close());
     afterEach(mock.restore);
     afterEach(async () => {
-      await app.auditLog.remove();
+      await app.auditLog.model.deleteMany({});
     });
 
     it('should has app auditLog property', async () => {
       assert(app.auditLog);
       assert(typeof app.auditLog.log === 'function');
-      assert(typeof app.auditLog.find === 'function');
-      assert(typeof app.auditLog.remove === 'function');
-      assert(typeof app.auditLog.count === 'function');
-      assert(typeof app.auditLog.getModel === 'function');
+      assert(typeof app.auditLog.model === 'function');
     });
 
     it('should get data from create', async () => {
@@ -64,7 +61,7 @@ describe('test/audit-log.test.js', () => {
     });
 
     it('should load promise', () => {
-      const query = app.auditLog.find({});
+      const query = app.auditLog.model.find({});
       assert.equal(query.exec().constructor, Promise);
     });
   });
@@ -82,7 +79,7 @@ describe('test/audit-log.test.js', () => {
     after(() => app.close());
     afterEach(mock.restore);
     afterEach(async () => {
-      await app.auditLog.remove();
+      await app.auditLog.model.deleteMany();
     });
 
     it('should get data from create', async () => {
@@ -112,8 +109,7 @@ describe('test/audit-log.test.js', () => {
         .get('/query')
         .expect(200);
 
-      assert(body[0].user === 'admin');
-      assert(body[0].env === 'unittest');
+      assert(body[0].operator === 'admin');
     });
   });
 
@@ -133,9 +129,7 @@ describe('test/audit-log.test.js', () => {
     it('should has app auditLog property', async () => {
       assert(app.auditLog);
       assert(typeof app.auditLog.log === 'function');
-      assert(typeof app.auditLog.find === 'function');
-      assert(typeof app.auditLog.remove === 'function');
-      assert(typeof app.auditLog.getModel === 'function');
+      assert(typeof app.auditLog.model === 'function');
     });
   });
 });

@@ -49,7 +49,6 @@ exports.auditLog = {
     name: 'audit_log',
     expand: {},
   },
-  extra: () => {},
   mongoose: {
     url: '',
     options: {},
@@ -57,13 +56,12 @@ exports.auditLog = {
 };
 ```
 
-| Field        | Type     | Remark                                 |
-| ------------ | -------- | -------------------------------------- |
-| model        | Object   | Config model for audit-log             |
-| model.name   | String   | Name for audit-log model               |
-| model.expand | Object   | Expansion for audit-log model          |
-| extra        | Function | Return data to save in audit-log model |
-| mongoose     | Object   | Same as egg-audit-log                  |
+| Field        | Type   | Remark                        |
+| ------------ | ------ | ----------------------------- |
+| model        | Object | Config model for audit-log    |
+| model.name   | String | Name for audit-log model      |
+| model.expand | Object | Expansion for audit-log model |
+| mongoose     | Object | Same as egg-mongoose          |
 
 ### Example
 
@@ -80,8 +78,8 @@ class Test extends Controller {
   }
 
   async query(ctx) {
-    const result = this.app.auditLog.find();
-    const total = this.app.auditLog.count();
+    const result = this.app.auditLog.model.find({});
+    const total = this.app.auditLog.model.countDocuments();
     return ctx.success({
       data: result,
       total,
@@ -100,7 +98,7 @@ export default app => {
     },
   } = app;
 
-  app.get('/users', log('log type', 'log content'), 'user.query');
+  app.get('/users', log('log type', 'log content', (ctx) => { operator: 'admin'}), 'user.query');
 }
 ```
 

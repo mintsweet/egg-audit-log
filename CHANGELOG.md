@@ -1,5 +1,13 @@
 # egg-audit-log
 
+## 1.1.2
+
+`2021-06-15`
+
+  * 🌟 Use model instead of other methods.
+  * 🛠 Remove extra config.
+  * 🐛 Fix the typescript definition file. 
+
 ## 1.1.1
 
 `2020-06-02`
